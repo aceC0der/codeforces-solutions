@@ -1,0 +1,72 @@
+/*
+ * Problem   : 2028A - Alice's Adventures in ''Chess''
+ * Link      : https://codeforces.com/contest/2028/problem/A
+ * Submission: https://codeforces.com/contest/2028/submission/293497514
+ * Rating    : 900   Tags: brute force, implementation, math
+ * Verdict   : Accepted (46 ms, 0 KB)
+ * Language  : C++17 (GCC 7-32)
+ * Date      : 2024-11-27 (Practice)
+ */
+#include <bits/stdc++.h>
+using namespace std;
+
+#define mp make_pair
+#define pb push_back
+#define ff first
+#define ss second
+#define ll long long
+#define vi vector<int>
+#define vl vector<ll>
+#define pi pair<int, int>
+#define vvi vector<vector<int>>
+#define vb vector<bool>
+#define pl pair<ll, ll>
+#define vpi vector<pi >
+#define vpl vector<pl >
+#define endl '\n'
+#define SetBit(x, k) (x |= (1LL << k))
+#define ClearBit(x, k) (x &= ~(1LL << k))
+#define CheckBit(x, k) ((x & (1LL << k)) > 0 ? 1 : 0)
+#define TestCases int tt,qq; cin>>tt ;for(qq=1;qq<=tt;qq++)
+#define fios ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+#define all(a) a.begin(),a.end()
+#define rep(i, a, b) for(int i=a; i<b; i++)
+#define pre(i, a, b) for(int i=a; i>=b; i--)
+
+void solve(){
+    int n, a, b;
+    cin >> n >>a >> b;
+    int x =0, y=0;
+    string s;
+    cin >> s;
+    int test = 100;
+    while(test--){
+        rep(i, 0, n){
+            if(s[i]=='N') y++;
+            else if(s[i]=='E') x++;
+            else if(s[i]=='S') y--;
+            else x--; 
+            if(x==a && y==b){
+                cout << "YES" << endl;
+                return;
+            }
+        }
+    }
+    cout << "NO" << endl;
+    
+
+    
+}
+
+int main()
+{
+    #ifndef ONLINE_JUDGE
+        freopen("input.txt", "r", stdin);
+        freopen("output.txt", "w", stdout);
+    #endif
+    fios
+    TestCases{
+        solve();
+    }
+    return 0;
+}
