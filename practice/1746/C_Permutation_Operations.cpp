@@ -1,0 +1,94 @@
+/*
+ * Problem   : 1746C - Permutation Operations
+ * Link      : https://codeforces.com/contest/1746/problem/C
+ * Submission: https://codeforces.com/contest/1746/submission/177480371
+ * Rating    : 1300   Tags: constructive algorithms, greedy, implementation, math
+ * Verdict   : Accepted (78 ms, 1200 KB)
+ * Language  : C++17 (GCC 7-32)
+ * Date      : 2022-10-22 (Practice)
+ */
+#include <bits/stdc++.h>
+using namespace std;
+
+#define mp make_pair
+#define pb push_back
+#define ff first
+#define ss second
+#define ll long long
+#define vi vector<int>
+#define vl vector<ll>
+#define pi pair<int, int>
+#define pl pair<ll, ll>
+#define vpi vector<pi >
+#define vpl vector<pl >
+#define endl '\n'
+#define SetBit(x, k) (x |= (1LL << k))
+#define ClearBit(x, k) (x &= ~(1LL << k))
+#define CheckBit(x, k) ((x & (1LL << k)) > 0 ? 1 : 0)
+#define TestCases int tt,qq; cin>>tt ;for(qq=1;qq<=tt;qq++)
+#define fios ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+#define all(a) a.begin(),a.end()
+#define rep(i, a, b) for(int i=a; i<b; i++)
+#define pre(i, a, b) for(int i=a; i>=b; i--)
+
+void solve(){
+    int n;
+    cin >> n;
+    vl a(n);
+    rep(i, 0, n) cin >> a[i];
+    ll sum = 0;
+    vi visited(n+1);
+    rep(i, 1, n){
+        a[i]+=sum;
+        if(a[i-1]>a[i]){
+            int dif = a[i-1]-a[i];
+            if(!visited[dif]){
+                visited[dif] = i+1;
+                sum += dif;
+                a[i]+=dif;
+            }
+        }
+    }
+    sum=0;
+    int idx = 1;
+    // rep(i, 0, n){
+    //     // if(i>0 && a[i-1]>a[i]) cnt++;
+    //     cout << a[i] << " ";
+    // }
+    // cout << endl;
+    rep(i, 1, n){
+        a[i]+=sum;
+        while(a[i-1]>a[i]){
+            if(!visited[idx]){
+                visited[idx] = i+1;
+                sum += idx;
+                a[i] += idx;
+            }
+            idx++;
+        }
+    }
+    // cout << idx << "(((" << endl;
+    rep(i, 1, n+1){
+        if(!visited[i]) visited[i] = 1;
+    }
+    rep(i, 1, n+1){
+        cout << visited[i] << " ";
+    }
+    cout << endl;
+    // int cnt = 0;
+    // rep(i, 0, n){
+    //     if(i>0 && a[i-1]>a[i]) cnt++;
+    //     cout << a[i] << " ";
+    // }
+    // cout << endl;
+    // cout << cnt << endl;
+}
+
+int main()
+{
+    fios
+    TestCases{
+        solve();
+    }
+    return 0;
+}
