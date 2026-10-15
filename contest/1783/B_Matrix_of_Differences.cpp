@@ -1,0 +1,82 @@
+/*
+ * Problem   : 1783B - Matrix of Differences
+ * Link      : https://codeforces.com/contest/1783/problem/B
+ * Submission: https://codeforces.com/contest/1783/submission/188460660
+ * Rating    : 1100   Tags: constructive algorithms, math
+ * Verdict   : Accepted (30 ms, 0 KB)
+ * Language  : C++17 (GCC 7-32)
+ * Date      : 2023-01-08 (Contest)
+ */
+
+#include <bits/stdc++.h>
+using namespace std;
+
+#define mp make_pair
+#define pb push_back
+#define ff first
+#define ss second
+#define ll long long
+#define vi vector<int>
+#define vl vector<ll>
+#define pi pair<int, int>
+#define pl pair<ll, ll>
+#define vpi vector<pi >
+#define vpl vector<pl >
+#define endl '\n'
+#define SetBit(x, k) (x |= (1LL << k))
+#define ClearBit(x, k) (x &= ~(1LL << k))
+#define CheckBit(x, k) ((x & (1LL << k)) > 0 ? 1 : 0)
+#define TestCases int tt,qq; cin>>tt ;for(qq=1;qq<=tt;qq++)
+#define fios ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+#define all(a) a.begin(),a.end()
+#define rep(i, a, b) for(int i=a; i<b; i++)
+#define pre(i, a, b) for(int i=a; i>=b; i--)
+
+void solve(){
+    int n;
+    cin >> n;
+    int mx = n*n, mn = 1;
+    int a[n][n];
+    int i=0, j=0;
+    int val = 0;
+    bool mf = true;
+    while(i<n){
+        if(j==0){
+            // bool f = true;
+            while(j<n){
+                if(mf) a[i][j] = mn++;
+                else a[i][j] = mx--;
+                mf=!mf;
+                j++;
+            }
+            j--;
+            i++;
+        }
+        else{
+            // bool f = true;
+            while(j>=0){
+                if(mf) a[i][j] = mn++;
+                else a[i][j] = mx--;
+                mf=!mf;
+                j--;
+            }
+            j++;
+            i++;
+        }
+    }
+    rep(i, 0, n){
+        rep(j, 0, n){
+            cout << a[i][j] << " ";
+        }
+        cout << endl;
+    }
+}
+
+int main()
+{
+    fios
+    TestCases{
+        solve();
+    }
+    return 0;
+}
