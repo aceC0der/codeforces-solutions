@@ -1,0 +1,85 @@
+/*
+ * Problem   : 1469C - Building a Fence
+ * Link      : https://codeforces.com/contest/1469/problem/C
+ * Submission: https://codeforces.com/contest/1469/submission/102637889
+ * Rating    : 1600   Tags: dp, greedy, implementation, two pointers
+ * Verdict   : Accepted (108 ms, 1600 KB)
+ * Language  : C++17 (GCC 7-32)
+ * Date      : 2020-12-29 (Practice)
+ */
+#include <bits/stdc++.h>
+using namespace std;
+
+#define mp make_pair
+#define pb push_back
+#define ff first
+#define ss second
+#define ll long long
+#define vi vector<int>
+#define vl vector<ll>
+#define pi pair<int, int>
+#define vpi vector<pi>
+#define fi(n) for(ll i=0;i<n;i++)
+#define fj(n) for(ll j=0;j<n;j++)
+#define T int tt,qq; cin>>tt ;for(qq=1;qq<=tt;qq++)
+#define I ios::sync_with_stdio(false); cin.tie(0); cout.tie(0);
+#define all(a) a.begin(),a.end()
+#define rep(i, a, b) for(int i=a; i<b; i++)
+#define pre(i, a, b) for(int i=a; i>=b; i--)
+
+int main()
+{
+    I
+    T{
+        int n, k, x;
+        cin >> n >> k;
+        vi a;
+        rep(i, 0, n){
+            cin >> x;
+            a.pb(x);
+        }
+        int maxi=k+a[0], mini;
+        mini = maxi;
+        //cout << maxi << " " << mini << endl;
+        bool flag = false;
+        rep(i, 1, n){
+            if(a[i]>a[i-1]){
+                if(maxi-1+k>=a[i]+k){
+                    maxi = min(maxi-1+k, k-1+k+a[i]);
+                    mini = a[i]+k;
+                }
+                else{
+                    flag = true;
+                    break;
+                }
+            }
+            else if(a[i]<a[i-1]){
+                if(mini-k+1-a[i]-k<=k-1){
+                    mini = max(mini-k+1,a[i]+k);
+                    maxi = k-1+a[i]+k;
+                }
+                else{
+                    flag = true;
+                    break;
+                }
+            }
+            else{
+                maxi = k-1+a[i]+k;
+                mini = a[i]+k;
+            }
+            //cout << maxi << " " << mini << endl;
+        }
+        if(flag){
+            cout << "NO" << endl;
+        }
+        else if(a[n-1]+k>=mini && a[n-1]+k<=maxi){
+            cout << "YES" << endl;
+        }
+        else {
+            cout << "NO" << endl;
+        }
+        a.clear();
+    }
+
+    return 0;
+}
